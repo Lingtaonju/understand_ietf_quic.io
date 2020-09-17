@@ -7,3 +7,12 @@
 https://tools.ietf.org/pdf/draft-ietf-quic-recovery-29.pdf 
 
 后序的 changelog 以 29 为基础进行更新。
+
+# TODO
+先测试
+周末补齐其他内容
+
+# test image
+图是否可以展示呢？
+test
+![image](https://github.com/Lingtaonju/understand_ietf_quic.io/blob/master/cc_recovery_images/ECN_TCP.png)
