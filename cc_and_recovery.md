@@ -263,6 +263,7 @@ QUIC 的拥塞控制以 bytes 为调节，TCP 以 packets.
 
 ## ECN
 QUIC 也支持是否将 ECN 标志作为拥塞信号。如果 ECN 被置位，可以做相应的拥塞调节。
+![image](https://github.com/Lingtaonju/understand_ietf_quic.io/blob/master/cc_recovery_images/ECN_IP.png)
 ![image](https://github.com/Lingtaonju/understand_ietf_quic.io/blob/master/cc_recovery_images/ECN_TCP.png)
 
 ## 初始/最小窗口
@@ -319,7 +320,7 @@ When an ACK frame is received that establishes loss of all in-flight packets sen
 
 因为在 t=8 时刻，已经发生了三次 pto，且从 t=0 到 t=7 没有报文被 ack.满足持续时间和丢包的条件
 
-image.png
+![image](https://github.com/Lingtaonju/understand_ietf_quic.io/blob/master/cc_recovery_images/Persiset_Cong.png)
 
 持续拥塞之后，跟 TCP 的 RTO 一样，sender 将拥塞窗口降为最小值，我们前文提到过是 2.
 
@@ -334,7 +335,11 @@ pacer 和拥塞控制配合使用, 比如 pacer 可以控制 cc 窗口中数据�
 
 如下所示，典型的 pacer 就是就 cc 窗口中的数据按照 srtt 的时间传输完，所以发送速率或者每个报文的发送间隔计算如下：
 
-image.png
+```
+rate = N * congestion_window / smoothed_rtt
+或者
+interval = smoothed_rtt * packet_size / congestion_window / N 
+```
 
 这里的 N 是一个比 1 稍大的值，比如 1.25，目的是为了能够充分利用这里拥塞控制的窗口
 
